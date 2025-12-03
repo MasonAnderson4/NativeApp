@@ -1,50 +1,98 @@
-# Welcome to your Expo app 👋
+# News Digest App
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A React Native news application built with Expo and Expo Router that delivers top headlines and categorized news from around the world.
 
-## Get started
+## Features
 
-1. Install dependencies
+- **Top Headlines**: Browse the latest breaking news from the United States
+- **Categories**: Filter news by topic (Business, Entertainment, Health, Science, Sports, Technology)
+- **Article Details**: View article summaries with the ability to read the full article in an external browser
+- **Bookmarks**: Save articles for later (session-based storage)
+- **Clean UI**: Simple, intuitive interface with tab-based navigation
 
+## Tech Stack
+
+- **Framework**: React Native with Expo
+- **Navigation**: Expo Router (file-based routing)
+- **State Management**: React Context API
+- **API**: NewsAPI
+- **Language**: TypeScript
+
+## Project Structure
+
+```
+app/
+├── (tabs)/              # Tab navigator screens
+│   ├── index.tsx        # Headlines screen
+│   ├── categories.tsx   # Categories screen
+│   ├── bookmarks.tsx    # Bookmarks screen
+│   ├── settings.tsx     # Settings screen
+│   └── _layout.tsx      # Tab layout configuration
+├── article.tsx          # Article detail screen
+├── _layout.tsx          # Root layout with Stack navigator
+context/
+├── BookmarksContext.tsx # Bookmark state management
+config.ts                # API configuration (not committed)
+```
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js installed
+- iOS Simulator (Mac only) or Android Emulator
+- Expo CLI
+
+### Installation
+
+1. Install dependencies:
    ```bash
    npm install
    ```
 
-2. Start the app
+2. Create a `config.ts` file in the root directory:
+   ```typescript
+   export const API_KEY = 'your_newsapi_key_here';
+   export const NEWS_API_BASE_URL = 'https://newsapi.org/v2';
+   ```
+   Get your free API key from [NewsAPI](https://newsapi.org/)
 
+3. Start the app:
    ```bash
    npx expo start
    ```
 
-In the output, you'll find options to open the app in a
+4. Run on your preferred platform:
+   - Press `i` for iOS Simulator
+   - Press `a` for Android Emulator
+   - Scan the QR code with Expo Go app on your phone
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+## How It Works
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+### Navigation
+- **Tab Navigation**: Bottom tabs for main screens (Headlines, Categories, Bookmarks, Settings)
+- **Stack Navigation**: Pushes Article detail screen on top of tabs
+- **Back Navigation**: Article screen has a back button to return to the previous tab
 
-## Get a fresh project
+### Bookmarks
+- Bookmarks are stored in React Context state
+- Bookmarks persist during the app session but reset when the app is closed
+- Add/remove bookmarks from the Article detail screen
 
-When you're ready, run:
+### API Integration
+- Fetches news from NewsAPI
+- Headlines: Top stories from the US
+- Categories: Filter by topic (business, entertainment, health, science, sports, technology)
 
-```bash
-npm run reset-project
-```
+## API Rate Limits
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+NewsAPI free tier allows 100 requests per day. The app makes:
+- 1 request on Headlines screen load
+- 1 request per category selection
 
-## Learn more
+## Learn More
 
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+- [Expo Documentation](https://docs.expo.dev/)
+- [React Native Documentation](https://reactnative.dev/docs/getting-started)
+- [Expo Router](https://docs.expo.dev/router/introduction/)
+- [NewsAPI Documentation](https://newsapi.org/docs)
