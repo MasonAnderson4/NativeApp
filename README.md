@@ -86,7 +86,7 @@ config.ts                # API configuration (not committed)
 
 ## API Rate Limits
 
-NewsAPI free tier allows 100 requests per day. The app makes:
+NewsAPI free tier allows 1000 requests per day. The app makes:
 - 1 request on Headlines screen load
 - 1 request per category selection
 
